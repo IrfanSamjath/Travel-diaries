@@ -13,7 +13,8 @@ const postSchema = new mongoose.Schema({
   author: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
+    default: 'Anonymous Traveler'
   },
   image: {
     type: String,
