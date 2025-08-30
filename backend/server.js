@@ -3,6 +3,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const dotenv = require('dotenv');
+
+// Load environment variables
+dotenv.config({ path: path.join(__dirname, '.env') });
+
+// Set default MONGODB_URI if not set
+if (!process.env.MONGODB_URI) {
+  process.env.MONGODB_URI = 'mongodb://localhost:27017/';
+}
 
 // Import routes
 const postsRoutes = require('./routes/posts');
