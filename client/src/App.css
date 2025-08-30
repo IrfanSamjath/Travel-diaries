@@ -1,0 +1,137 @@
+/* -------- Global Layout -------- */
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-weight: 600;
+  color: inherit;
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+/* -------- Navbar -------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #0077b6, #023e8a);
+  color: #fff;
+  padding: 14px 28px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: #ffd60a;
+}
+
+/* Toggle button */
+.toggle-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.2);
+}
+
+/* -------- Post Card -------- */
+.post-card {
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+  transition: all 0.3s ease-in-out;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+
+.post-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  background: #fdfdfd;
+}
+
+.post-card img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.post-card h3 {
+  margin: 8px 0;
+  color: #0077b6;
+}
+
+.post-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* -------- DARK MODE -------- */
+body.dark {
+  background: #121212;
+  color: #f1f1f1;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark .navbar {
+  background: linear-gradient(135deg, #1e1e1e, #111);
+}
+
+body.dark .navbar ul li a {
+  color: #ddd;
+}
+
+body.dark .navbar ul li a:hover {
+  color: #ffd60a;
+}
+
+body.dark .post-card {
+  background: #1e1e1e;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.08);
+}
+
+body.dark .post-card h3 {
+  color: #90e0ef;
+}
+
+body.dark .post-card p {
+  color: #ccc;
+}
