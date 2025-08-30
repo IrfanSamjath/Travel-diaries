@@ -162,6 +162,41 @@ curl -X POST http://localhost:5000/api/posts \
 - **Error Handling**: Proper error responses
 - **CORS Support**: Frontend-backend communication
 
+## 🚀 Deployment
+
+### Backend Deployment (Render)
+
+1. **Create a new Web Service** on Render
+2. **Connect your GitHub repository**: https://github.com/IrfanSamjath/Travel-diaries
+3. **Configure the service**:
+   - **Runtime**: Node.js
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+   - **Root Directory**: `travel-diaries-backend`
+4. **Environment Variables**:
+   ```
+   PORT=10000
+   MONGODB_URI=your_mongodb_connection_string
+   NODE_ENV=production
+   ```
+5. **Deploy** the service
+
+### Frontend Deployment (Render)
+
+1. **Create a new Static Site** on Render
+2. **Connect your GitHub repository**: https://github.com/IrfanSamjath/Travel-diaries
+3. **Configure the service**:
+   - **Build Command**: `cd client && npm install && npm run build`
+   - **Publish Directory**: `client/build`
+4. **Deploy** the service
+
+### Environment Variables
+
+**Backend (.env):**
+- `PORT` - Server port (default: 5000, use 10000 for Render)
+- `MONGODB_URI` - MongoDB connection string
+- `NODE_ENV` - Environment (production for deployment)
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -170,13 +205,10 @@ curl -X POST http://localhost:5000/api/posts \
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-<<<<<<< HEAD
-=======
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
->>>>>>> b6b031f (https://github.com/IrfanSamjath/Travel-diaries.git)
 ## 👨‍💻 Author
 
 **Irfan Samjath**
