@@ -170,6 +170,13 @@ curl -X POST http://localhost:5000/api/posts \
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+<<<<<<< HEAD
+=======
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+>>>>>>> b6b031f (https://github.com/IrfanSamjath/Travel-diaries.git)
 ## 👨‍💻 Author
 
 **Irfan Samjath**
