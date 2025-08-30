@@ -27,17 +27,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/uploads', express.static('uploads')); // Serve uploaded files
 
-// Root route
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Travel Diaries API Server',
-    endpoints: {
-      posts: '/api/posts',
-      single_post: '/api/posts/:id',
-      uploads: '/uploads/:filename'
-    },
-    status: 'Server is running'
-  });
+// Root route for testing
+app.get("/", (req, res) => {
+  res.send("🚀 Backend is running on Render");
 });
 
 app.use('/api/posts', postRoutes); // API routes
@@ -45,9 +37,9 @@ app.use('/api/posts', postRoutes); // API routes
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('✅ MongoDB Connected');
     app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`);
+      console.log(`✅ Server is running on port ${PORT}`);
     });
   })
   .catch(err => console.error('MongoDB connection error:', err));
