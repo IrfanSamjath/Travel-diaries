@@ -4,5 +4,7 @@
   },
   "scripts": {
     "start": "cd backend && node env-setup.js"
-  }
+  },
+  "name": "travel-diaries-backend",
+  "version": "1.0.0"
 }
