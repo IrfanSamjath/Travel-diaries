@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "dotenv": "^17.2.1"
+  },
+  "scripts": {
+    "start": "echo 'This is the root package.json. Please run the backend from travel-diaries-backend directory.'"
   }
 }
