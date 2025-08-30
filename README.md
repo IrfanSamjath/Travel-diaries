@@ -32,7 +32,7 @@ A full-stack web application for sharing and discovering travel experiences. Use
 
 ```
 travel-diaries/
-├── backend/                 # Backend API server
+├── travel-diaries-backend/  # Backend API server
 │   ├── models/             # MongoDB models
 │   ├── routes/             # API routes
 │   ├── middleware/         # Custom middleware
@@ -69,7 +69,7 @@ travel-diaries/
 
 2. **Set up the Backend**
    ```bash
-   cd backend
+   cd travel-diaries-backend
    npm install
    ```
 
@@ -94,7 +94,7 @@ travel-diaries/
 
 1. **Start the Backend Server**
    ```bash
-   cd backend
+   cd travel-diaries-backend
    npm run dev
    ```
    The backend will run on `http://localhost:5000`
