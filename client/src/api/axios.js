@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Get the base URL from environment or use default
-let baseURL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+let baseURL = import.meta.env.VITE_API_URL || "https://travel-diaries-backend-e8ud.onrender.com";
 
 // Remove trailing slash if present
 baseURL = baseURL.replace(/\/$/, "");

@@ -21,8 +21,8 @@ function PostDetail() {
   if (!post) return <p>Loading...</p>;
 
   // Construct full image URL by prepending backend base URL
-  const fullImageUrl = post.imageUrl 
-    ? `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/${post.imageUrl.replace(/\\/g, "/")}`
+  const fullImageUrl = post.imageUrl
+    ? `${import.meta.env.VITE_API_URL || "https://travel-diaries-backend-e8ud.onrender.com"}/${post.imageUrl.replace(/\\/g, "/")}`
     : null;
 
   return (
