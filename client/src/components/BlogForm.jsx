@@ -6,6 +6,7 @@ function BlogForm({ onPostCreated }) {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
+    author: "",
     image: null
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -34,6 +35,7 @@ function BlogForm({ onPostCreated }) {
       const submitData = new FormData();
       submitData.append("title", formData.title);
       submitData.append("content", formData.content);
+      submitData.append("author", formData.author);
       if (formData.image) {
         submitData.append("image", formData.image);
       }
@@ -41,6 +43,7 @@ function BlogForm({ onPostCreated }) {
       console.log("Submitting post data:", {
         title: formData.title,
         content: formData.content,
+        author: formData.author,
         hasImage: !!formData.image
       });
 
@@ -50,7 +53,7 @@ function BlogForm({ onPostCreated }) {
       onPostCreated(data);
 
       // Reset form
-      setFormData({ title: "", content: "", image: null });
+      setFormData({ title: "", content: "", author: "", image: null });
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
@@ -87,6 +90,19 @@ function BlogForm({ onPostCreated }) {
             onChange={handleInputChange}
             required
             placeholder="Enter post title"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="author">Author</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            value={formData.author}
+            onChange={handleInputChange}
+            required
+            placeholder="Enter author name"
           />
         </div>
 
