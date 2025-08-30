@@ -29,7 +29,7 @@ app.use('/uploads', express.static('uploads')); // Serve uploaded files
 
 // Root route for testing
 app.get("/", (req, res) => {
-  res.send("🚀 Backend is running on Render");
+  res.json({ status: "ok", message: "🚀 Backend is running on Render" });
 });
 
 app.use('/api/posts', postRoutes); // API routes
