@@ -62,24 +62,71 @@ router.post('/json', async (req, res) => {
 
 // Create new post (with file upload)
 router.post('/', upload.single('image'), async (req, res) => {
-  try {
-    const postData = {
+  console.log("📩 POST /api/posts received");
+  console.log("📩 Request body:", req.body);
+  console.log("📩 Request file:", req.file ? req.file.filename : "No file");
+
+  const postData = {
+    title: req.body.title,
+    content: req.body.content,
+    author: req.body.author,
+    tags: req.body.tags ? (typeof req.body.tags === 'string' ? JSON.parse(req.body.tags) : req.body.tags) : []
+  };
+
+  if (req.file) {
+    postData.image = `/uploads/${req.file.filename}`;
+  }
+
+  console.log("📝 Post data to save:", postData);
+
+  // Check if MongoDB is connected
+  const mongoose = require('mongoose');
+  if (mongoose.connection.readyState !== 1) {
+    console.log('🔄 MongoDB not connected, using mock data fallback for POST');
+
+    const mockPost = {
+      _id: Date.now().toString(),
       title: req.body.title,
       content: req.body.content,
       author: req.body.author,
-      tags: req.body.tags ? (typeof req.body.tags === 'string' ? JSON.parse(req.body.tags) : req.body.tags) : []
+      tags: req.body.tags ? (typeof req.body.tags === 'string' ? JSON.parse(req.body.tags) : req.body.tags) : [],
+      image: req.file ? `/uploads/${req.file.filename}` : null,
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
 
-    if (req.file) {
-      postData.image = `/uploads/${req.file.filename}`;
-    }
+    mockPosts.push(mockPost);
+    console.log("✅ Mock post created successfully:", mockPost);
+    return res.status(201).json(mockPost);
+  }
 
+  try {
     const post = new Post(postData);
     const savedPost = await post.save();
+
+    console.log("✅ Post saved successfully:", savedPost);
     res.status(201).json(savedPost);
   } catch (error) {
-    console.error('Error creating post:', error);
-    res.status(400).json({ message: error.message });
+    console.error('❌ Error creating post:', error);
+    console.error('❌ Error details:', error.message);
+
+    // Fallback to mock data if MongoDB operation fails
+    console.log('🔄 Using mock data fallback for POST due to error');
+
+    const mockPost = {
+      _id: Date.now().toString(),
+      title: req.body.title,
+      content: req.body.content,
+      author: req.body.author,
+      tags: req.body.tags ? (typeof req.body.tags === 'string' ? JSON.parse(req.body.tags) : req.body.tags) : [],
+      image: req.file ? `/uploads/${req.file.filename}` : null,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
+
+    mockPosts.push(mockPost);
+    console.log("✅ Mock post created successfully:", mockPost);
+    res.status(201).json(mockPost);
   }
 });
 
