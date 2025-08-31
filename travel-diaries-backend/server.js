@@ -32,6 +32,11 @@ app.get("/", (req, res) => {
   res.json({ status: "ok", message: "🚀 Backend is running on Render" });
 });
 
+// Health check route
+app.get("/healthz", (req, res) => {
+  res.status(200).json({ status: "ok", message: "Backend is healthy 🚀" });
+});
+
 app.use('/api/posts', postRoutes); // API routes
 
 // Connect to MongoDB

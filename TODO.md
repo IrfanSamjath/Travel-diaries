@@ -4,8 +4,11 @@
 - [x] Create TODO.md with plan
 - [x] Update backend/db.js with enhanced MongoDB connection options
 - [x] Add connection event listeners for better debugging
-- [x] Update server.js with CORS, body parsing, and debug route
-- [x] Test the backend to verify the fix
+- [x] Replace server.js with minimal Express server for testing
+- [x] Add /healthz health check route for Render
+- [x] Update server.js with complete working version
+- [x] Commit and push changes to GitHub
+- [ ] Test the backend to verify the fix
 
 ## Information Gathered
 - The error "Operation `posts.insertOne()` buffering timed out after 10000ms" indicates MongoDB connection issues

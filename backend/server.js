@@ -1,9 +1,21 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
+const connectDB = require("./db");
+const postsRouter = require("./routes/posts");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Connect to MongoDB
+connectDB();
+
+// Serve static files from uploads directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Mount posts routes under /api/posts
+app.use('/api/posts', postsRouter);
 
 // Root route
 app.get("/", (req, res) => {
@@ -12,7 +24,7 @@ app.get("/", (req, res) => {
 
 // Health check route
 app.get("/healthz", (req, res) => {
-  res.status(200).json({ status: "ok", message: "Backend is healthy 🚀" });
+  res.status(200).json({ status: "ok" });
 });
 
 // Test POST route
