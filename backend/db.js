@@ -18,8 +18,7 @@ const connectDB = async () => {
       socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
       family: 4, // Use IPv4, skip trying IPv6
       retryWrites: true,
-      retryReads: true,
-      bufferCommands: true
+      retryReads: true
     });
 
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);

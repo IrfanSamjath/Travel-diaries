@@ -34,9 +34,8 @@ const postSchema = new mongoose.Schema({
   }
 });
 
-// Disable buffering to prevent timeout issues
-postSchema.set('bufferCommands', false);
-postSchema.set('bufferMaxEntries', 0);
+// Enable buffering to allow queries before connection is fully established
+postSchema.set('bufferCommands', true);
 
 // Update the updatedAt field before saving
 postSchema.pre('save', function(next) {
