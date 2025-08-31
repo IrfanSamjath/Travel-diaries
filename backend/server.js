@@ -15,6 +15,7 @@ const startServer = async () => {
 
   // Require postsRouter after connection is established
   const postsRouter = require("./routes/posts");
+  const blogRouter = require("./routes/blog");
 
   // Serve static files from uploads directory
   app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -24,6 +25,9 @@ const startServer = async () => {
 
   // Mount posts routes under /api/posts
   app.use('/api/posts', postsRouter);
+
+  // Mount blog routes under /blog
+  app.use('/blog', blogRouter);
 
   // Root route
   app.get("/", (req, res) => {
