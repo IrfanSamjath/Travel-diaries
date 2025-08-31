@@ -32,24 +32,27 @@ function BlogForm({ onPostCreated }) {
     setIsSubmitting(true);
 
     try {
-      const submitData = new FormData();
-      submitData.append("title", formData.title);
-      submitData.append("content", formData.content);
-      submitData.append("author", formData.author);
-      if (formData.image) {
-        submitData.append("image", formData.image);
-      }
-
-      console.log("Submitting post data:", {
+      const newBlog = {
         title: formData.title,
         content: formData.content,
-        author: formData.author,
-        hasImage: !!formData.image
+        author: formData.author
+      };
+
+      console.log("Submitting blog data:", newBlog);
+
+      const res = await fetch("http://localhost:10000/blog", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newBlog),
       });
 
-      const { data } = await api.post("/posts", submitData);
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(`Server error: ${res.status} ${errText}`);
+      }
 
-      console.log("Post created successfully:", data);
+      const data = await res.json();
+      console.log("✅ Blog created:", data);
       onPostCreated(data);
 
       // Reset form
@@ -58,19 +61,8 @@ function BlogForm({ onPostCreated }) {
         fileInputRef.current.value = "";
       }
     } catch (err) {
-      console.error("Error creating post", err);
-
-      if (err.response) {
-        console.error("Backend error response:", err.response.data);
-        console.error("Status:", err.response.status);
-        alert(`Failed: ${err.response.status} - ${JSON.stringify(err.response.data)}`);
-      } else if (err.request) {
-        console.error("No response received:", err.request);
-        alert("Failed: No response from server. Check if backend is running.");
-      } else {
-        console.error("Request setup error:", err.message);
-        alert(`Error: ${err.message}`);
-      }
+      console.error("❌ Failed to save blog:", err);
+      alert("Could not save blog. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
