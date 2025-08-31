@@ -22,9 +22,9 @@ app.get("/", (req, res) => {
   res.send("✅ Backend is live 🚀");
 });
 
-// Health check route
+// Health check route (for Render)
 app.get("/healthz", (req, res) => {
-  res.status(200).json({ status: "ok" });
+  res.status(200).json({ status: "ok", message: "Backend is healthy 🚀" });
 });
 
 // Test POST route
