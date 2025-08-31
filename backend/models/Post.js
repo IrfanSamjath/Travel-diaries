@@ -34,6 +34,10 @@ const postSchema = new mongoose.Schema({
   }
 });
 
+// Disable buffering to prevent timeout issues
+postSchema.set('bufferCommands', false);
+postSchema.set('bufferMaxEntries', 0);
+
 // Update the updatedAt field before saving
 postSchema.pre('save', function(next) {
   this.updatedAt = Date.now();

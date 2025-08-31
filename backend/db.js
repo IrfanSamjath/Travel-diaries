@@ -13,10 +13,8 @@ const connectDB = async () => {
     console.log('🔄 Attempting to connect to MongoDB...');
 
     const conn = await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 10000, // Increased timeout for Render
-      bufferMaxEntries: 0, // Disable mongoose buffering
-      bufferCommands: false, // Disable mongoose buffering
-      maxPoolSize: 5, // Reduced pool size for Render
+      serverSelectionTimeoutMS: 5000, // Timeout for server selection
+      maxPoolSize: 10, // Connection pool size
       socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
       family: 4, // Use IPv4, skip trying IPv6
       retryWrites: true,
