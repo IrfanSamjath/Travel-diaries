@@ -12,6 +12,11 @@ app.get("/", (req, res) => {
   res.send("✅ Backend is live 🚀");
 });
 
+// Health check route for Render
+app.get("/healthz", (req, res) => {
+  res.status(200).json({ status: "ok", message: "Backend is healthy 🚀" });
+});
+
 // Test POST route
 app.post("/test", (req, res) => {
   console.log("📩 POST /test:", req.body);
