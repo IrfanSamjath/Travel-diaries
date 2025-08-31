@@ -3,7 +3,7 @@ console.log('Environment variables loaded from:', __dirname + '/.env');
 
 // Force set MONGODB_URI if not set in .env
 if (!process.env.MONGODB_URI) {
-  process.env.MONGODB_URI = 'mongodb+srv://IrfanSamjath:samjath786@cluster0.b8rroad.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+  process.env.MONGODB_URI = 'mongodb+srv://irfansamjath007_db_user:v9QkyRmmJ0TcDcEa@traveldiaries.wdjllmv.mongodb.net/?retryWrites=true&w=majority&appName=Traveldiaries';
   console.log('MONGODB_URI was not set, defaulting to:', process.env.MONGODB_URI);
 }
 
