@@ -1,32 +1,103 @@
-import { useState, useEffect } from "react";
-
-function Navbar() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
-  }, [darkMode]);
-
-  return (
-    <nav className="navbar">
-      <div className="logo">Travel Diaries</div>
-
-      <div className="nav-right">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
-        <button className="toggle-btn" onClick={() => setDarkMode(!darkMode)}>
-          {darkMode ? "☀️" : "🌙"}
-        </button>
-      </div>
-    </nav>
-  );
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 }
 
-export default Navbar;
+.navbar.dark {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.navbar.dark .logo {
+  color: #fff;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin: 0;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar.dark a {
+  color: #fff;
+}
+
+.navbar a:hover {
+  color: #007bff;
+}
+
+.toggle-btn {
+  background: none;
+  border: 2px solid #333;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.navbar.dark .toggle-btn {
+  border-color: #fff;
+  color: #fff;
+}
+
+.toggle-btn:hover {
+  background-color: #f8f9fa;
+  transform: scale(1.1);
+}
+
+.navbar.dark .toggle-btn:hover {
+  background-color: #333;
+}
+
+/* Dark mode body styles */
+body.dark {
+  background-color: #121212;
+  color: #fff;
+}
+
+body.dark .navbar {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+body.dark .navbar a {
+  color: #fff;
+}
+
+body.dark .navbar .toggle-btn {
+  border-color: #fff;
+  color: #fff;
+}
