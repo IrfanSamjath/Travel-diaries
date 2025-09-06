@@ -21,9 +21,22 @@ function PostDetail() {
   if (!post) return <p>Loading...</p>;
 
   // Construct full image URL by prepending backend base URL
-  const fullImageUrl = post.image
-    ? `${import.meta.env.VITE_API_URL || "https://travel-diaries-backend-e8ud.onrender.com"}/${post.image.replace(/\\/g, "/")}`
-    : null;
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return null;
+
+    // If image path already includes full URL, use it as is
+    if (imagePath.startsWith('http')) {
+      return imagePath;
+    }
+
+    // Remove leading slash if present and construct full URL
+    const cleanPath = imagePath.startsWith('/') ? imagePath.substring(1) : imagePath;
+    const baseUrl = import.meta.env.VITE_API_URL || "https://travel-diaries-ekeo.onrender.com";
+
+    return `${baseUrl}/${cleanPath}`;
+  };
+
+  const fullImageUrl = getImageUrl(post.image);
 
   return (
     <div>
