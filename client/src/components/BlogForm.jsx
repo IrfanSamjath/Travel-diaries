@@ -55,15 +55,8 @@ function BlogForm({ onPostCreated }) {
         },
       });
 
-      // Safe error handling for non-JSON responses
-      if (response.headers['content-type'] && response.headers['content-type'].includes('application/json')) {
-        const data = response.data;
-        console.log("✅ Post created:", data);
-        onPostCreated(data);
-      } else {
-        const text = await response.text();
-        throw new Error(`Unexpected response format: ${text}`);
-      }
+      console.log("✅ Post created:", response.data);
+      onPostCreated(response.data);
 
       // Reset form
       setFormData({ title: "", content: "", author: "", image: null });

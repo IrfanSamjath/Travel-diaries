@@ -14,13 +14,7 @@ function Blog() {
   const fetchPosts = async () => {
     try {
       const response = await api.get("/posts");
-      // Safe error handling for non-JSON responses
-      if (response.headers['content-type'] && response.headers['content-type'].includes('application/json')) {
-        setPosts(response.data);
-      } else {
-        const text = await response.text();
-        throw new Error(`Unexpected response format: ${text}`);
-      }
+      setPosts(response.data);
     } catch (err) {
       console.error("Error fetching posts", err);
     }

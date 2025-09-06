@@ -10,13 +10,7 @@ function PostDetail() {
     const fetchPost = async () => {
       try {
         const response = await api.get(`/posts/${id}`);
-        // Safe error handling for non-JSON responses
-        if (response.headers['content-type'] && response.headers['content-type'].includes('application/json')) {
-          setPost(response.data);
-        } else {
-          const text = await response.text();
-          throw new Error(`Unexpected response format: ${text}`);
-        }
+        setPost(response.data);
       } catch (err) {
         console.error("Error loading post", err);
       }
