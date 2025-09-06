@@ -63,9 +63,21 @@ function BlogForm({ onPostCreated }) {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-    } catch (err) {
-      console.error("❌ Failed to save post:", err);
-      alert("Could not save post. Please try again later.");
+    } catch (error) {
+      console.error("❌ Failed to create post:", error);
+      if (error.response) {
+        // Server responded with error status
+        console.error("❌ Server error:", error.response.status, error.response.data);
+        alert(`Failed to create post: ${error.response.data.message || 'Server error'}`);
+      } else if (error.request) {
+        // Network error
+        console.error("❌ Network error:", error.request);
+        alert("Network error. Please check your connection and try again.");
+      } else {
+        // Other error
+        console.error("❌ Error:", error.message);
+        alert(`Error: ${error.message}`);
+      }
     } finally {
       setIsSubmitting(false);
     }

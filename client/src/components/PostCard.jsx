@@ -2,8 +2,8 @@ import "./PostCard.css";
 
 function PostCard({ post }) {
   // Construct full image URL by prepending backend base URL
-  const fullImageUrl = post.imageUrl
-    ? `${import.meta.env.VITE_API_URL || "https://travel-diaries-backend-e8ud.onrender.com"}/${post.imageUrl.replace(/\\/g, "/")}`
+  const fullImageUrl = post.image
+    ? `${import.meta.env.VITE_API_URL || "https://travel-diaries-backend-e8ud.onrender.com"}/${post.image.replace(/\\/g, "/")}`
     : null;
 
   return (
