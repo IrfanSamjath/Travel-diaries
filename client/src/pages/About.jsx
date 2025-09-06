@@ -1,11 +1,11 @@
 function About() {
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: "60px" }}>
       <h1>About Travel Diaries</h1>
-      <img 
-        src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" 
-        alt="Beautiful Travel Landscape" 
-        style={{width: '100%', maxWidth: '600px', height: 'auto', borderRadius: '8px', marginBottom: '20px'}} 
+      <img
+        src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+        alt="Beautiful Travel Landscape"
+        style={{width: '100%', maxWidth: '600px', height: 'auto', borderRadius: '8px', marginBottom: '20px'}}
       />
       <p>
         Travel Diaries is a community-driven blog where travelers share

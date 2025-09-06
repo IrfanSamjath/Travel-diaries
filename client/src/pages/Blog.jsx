@@ -27,12 +27,12 @@ function Blog() {
   };
 
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: "60px" }}>
       <h1>Travel Blog</h1>
-      
+
       {/* Blog creation form */}
       <BlogForm onPostCreated={handlePostCreated} />
-      
+
       {/* Posts list */}
       {posts.length === 0 ? (
         <p>No posts yet. Be the first to share your journey! ✨</p>

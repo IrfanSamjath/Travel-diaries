@@ -3,7 +3,7 @@ function Home() {
     <div style={{ textAlign: "center", marginTop: "60px" }}>
       <h1>🌍 Welcome to Travel Diaries</h1>
       <p style={{ fontSize: "1.2rem", margin: "20px 0" }}>
-        Discover breathtaking journeys, share your adventures,  
+        Discover breathtaking journeys, share your adventures,
         and get inspired by fellow travelers ✈️
       </p>
       <img

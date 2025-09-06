@@ -1,107 +1,95 @@
 /* -------- Global Layout -------- */
 .container {
-  max-width: 1000px;
-  margin: 30px auto;
+  max-width: 1100px;
+  margin: 40px auto;
   padding: 20px;
 }
 
-/* Headings */
+/* Typography */
 h1, h2, h3 {
   font-family: 'Segoe UI', Roboto, sans-serif;
   font-weight: 600;
-  color: inherit;
   margin-bottom: 16px;
+  line-height: 1.3;
 }
 
 p {
   font-size: 1.05rem;
   line-height: 1.7;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  color: #333;
 }
 
 /* -------- Navbar -------- */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;  /* logo left, links + toggle right */
   align-items: center;
-  background: linear-gradient(135deg, #0077b6, #023e8a);
+  background: linear-gradient(135deg, #10b981, #065f46); /* emerald gradient */
   color: #fff;
   padding: 14px 28px;
   position: sticky;
   top: 0;
   z-index: 100;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
+/* Logo */
 .navbar .logo {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: bold;
   letter-spacing: 1px;
 }
 
+/* Right side (links + toggle button) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+/* Navigation links (horizontal) */
 .navbar ul {
   list-style: none;
   display: flex;
+  flex-direction: row;
   gap: 24px;
   margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline-block;
 }
 
 .navbar ul li a {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.2s;
 }
 
 .navbar ul li a:hover {
-  color: #ffd60a;
+  color: #facc15; /* amber */
+  transform: scale(1.05);
 }
 
 /* Toggle button */
 .toggle-btn {
-  background: transparent;
+  background: #047857;
   border: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  padding: 6px 10px;
+  border-radius: 6px;
   cursor: pointer;
   color: white;
-  transition: transform 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .toggle-btn:hover {
-  transform: scale(1.2);
-}
-
-/* -------- Post Card -------- */
-.post-card {
-  border: none;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 16px 0;
-  transition: all 0.3s ease-in-out;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  cursor: pointer;
-}
-
-.post-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  background: #fdfdfd;
-}
-
-.post-card img {
-  max-width: 100%;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
-
-.post-card h3 {
-  margin: 8px 0;
-  color: #0077b6;
-}
-
-.post-card p {
-  color: #555;
-  font-size: 0.95rem;
+  background: #065f46;
+  transform: scale(1.1);
 }
 
 /* -------- DARK MODE -------- */
@@ -112,7 +100,7 @@ body.dark {
 }
 
 body.dark .navbar {
-  background: linear-gradient(135deg, #1e1e1e, #111);
+  background: linear-gradient(135deg, #1e293b, #0f172a); /* dark slate gradient */
 }
 
 body.dark .navbar ul li a {
@@ -120,18 +108,13 @@ body.dark .navbar ul li a {
 }
 
 body.dark .navbar ul li a:hover {
-  color: #ffd60a;
+  color: #facc15;
 }
 
-body.dark .post-card {
-  background: #1e1e1e;
-  box-shadow: 0 4px 12px rgba(255,255,255,0.08);
+body.dark .toggle-btn {
+  background: #334155;
 }
 
-body.dark .post-card h3 {
-  color: #90e0ef;
-}
-
-body.dark .post-card p {
-  color: #ccc;
+body.dark .toggle-btn:hover {
+  background: #1e293b;
 }

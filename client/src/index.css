@@ -20,3 +20,25 @@ a {
 h1, h2, h3 {
   margin-bottom: 12px;
 }
+
+/* Global dark mode styles */
+body.dark {
+  background: #121212;
+  color: #f1f1f1;
+}
+
+body.dark h1, body.dark h2, body.dark h3 {
+  color: #f1f1f1;
+}
+
+body.dark p {
+  color: #ddd;
+}
+
+body.dark a {
+  color: #90e0ef;
+}
+
+body.dark a:hover {
+  color: #ffd60a;
+}
