@@ -32,27 +32,30 @@ function BlogForm({ onPostCreated }) {
     setIsSubmitting(true);
 
     try {
-      const newBlog = {
-        title: formData.title,
-        content: formData.content,
-        author: formData.author
-      };
+      const postData = new FormData();
+      postData.append('title', formData.title);
+      postData.append('content', formData.content);
+      postData.append('author', formData.author);
+      postData.append('tags', JSON.stringify([])); // Empty tags array for now
 
-      console.log("Submitting blog data:", newBlog);
-
-      const res = await fetch("http://localhost:10000/blog", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newBlog),
-      });
-
-      if (!res.ok) {
-        const errText = await res.text();
-        throw new Error(`Server error: ${res.status} ${errText}`);
+      if (formData.image) {
+        postData.append('image', formData.image);
       }
 
-      const data = await res.json();
-      console.log("✅ Blog created:", data);
+      console.log("Submitting post data:", {
+        title: formData.title,
+        content: formData.content,
+        author: formData.author,
+        hasImage: !!formData.image
+      });
+
+      const { data } = await api.post("/posts", postData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log("✅ Post created:", data);
       onPostCreated(data);
 
       // Reset form
@@ -61,8 +64,8 @@ function BlogForm({ onPostCreated }) {
         fileInputRef.current.value = "";
       }
     } catch (err) {
-      console.error("❌ Failed to save blog:", err);
-      alert("Could not save blog. Please try again later.");
+      console.error("❌ Failed to save post:", err);
+      alert("Could not save post. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
