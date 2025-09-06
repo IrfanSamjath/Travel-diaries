@@ -1,15 +1,22 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Blog from "./pages/Blog";
+import About from "./pages/About";
+import PostDetail from "./pages/PostDetail";
 import "./App.css";
 
 function App() {
   return (
-    <>
+    <Router>
       <Navbar />
-      <div className="container">
-        <h1>Welcome to Travel Diaries</h1>
-        <p>This is your blog platform. Share your adventures!</p>
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/posts/:id" element={<PostDetail />} />
+      </Routes>
+    </Router>
   );
 }
 
