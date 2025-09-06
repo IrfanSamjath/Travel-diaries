@@ -7,7 +7,11 @@ const Blog = require("./models/Blog"); // <-- add this
 const postsRouter = require("./routes/posts");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["https://travel-diaries-ekeo.onrender.com"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 // Connect to MongoDB
