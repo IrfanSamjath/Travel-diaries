@@ -18,7 +18,10 @@ const connectDB = async () => {
       socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
       family: 4, // Use IPv4, skip trying IPv6
       retryWrites: true,
-      retryReads: true
+      retryReads: true,
+      ssl: true, // Explicitly enable SSL
+      tlsAllowInvalidCertificates: false, // Do not allow invalid certs
+      tlsAllowInvalidHostnames: false
     });
 
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
