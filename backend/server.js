@@ -27,13 +27,6 @@ app.use('/api/posts', postsRouter);
 // Add /blog routes to redirect to /api/posts for compatibility
 app.use('/blog', postsRouter);
 
-app.get("/", (req, res) => res.send("✅ Backend is live 🚀"));
-
-// Health check route
-app.get("/healthz", (req, res) => {
-  res.status(200).json({ status: "ok", message: "Backend is healthy 🚀" });
-});
-
 // Global error handler to ensure JSON responses for all errors
 app.use((err, req, res, next) => {
   console.error('❌ Global error handler:', err);
