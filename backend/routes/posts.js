@@ -37,7 +37,13 @@ router.get('/:id', async (req, res) => {
     }
     res.json(post);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    // Fallback to mock data if MongoDB is not connected
+    console.log('Using mock data for single post');
+    const mockPost = mockPosts.find(p => p._id === req.params.id);
+    if (!mockPost) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    res.json(mockPost);
   }
 });
 
@@ -176,9 +182,14 @@ router.put('/:id', upload.single('image'), async (req, res) => {
   }
 });
 
+const mongoose = require('mongoose');
+
 // Delete post
 router.delete('/:id', async (req, res) => {
   try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ message: 'Invalid post ID' });
+    }
     const post = await Post.findByIdAndDelete(req.params.id);
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
