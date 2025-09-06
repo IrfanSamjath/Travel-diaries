@@ -83,8 +83,14 @@ app.post("/blog", async (req, res) => {
     };
 
     console.log("✅ Mock blog created successfully:", mockBlog);
-    res.status(201).json(mockBlog);
+    res.status(500).json({ error: "Could not save blog" }); // Return JSON error response instead of HTML
   }
+});
+
+// Global error handler to ensure JSON responses for all errors
+app.use((err, req, res, next) => {
+  console.error('❌ Global error handler:', err);
+  res.status(500).json({ error: 'Internal server error' });
 });
 
 const PORT = process.env.PORT || 10000;

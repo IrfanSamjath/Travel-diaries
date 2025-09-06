@@ -49,14 +49,21 @@ function BlogForm({ onPostCreated }) {
         hasImage: !!formData.image
       });
 
-      const { data } = await api.post("/posts", postData, {
+      const response = await api.post("/posts", postData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      console.log("✅ Post created:", data);
-      onPostCreated(data);
+      // Safe error handling for non-JSON responses
+      if (response.headers['content-type'] && response.headers['content-type'].includes('application/json')) {
+        const data = response.data;
+        console.log("✅ Post created:", data);
+        onPostCreated(data);
+      } else {
+        const text = await response.text();
+        throw new Error(`Unexpected response format: ${text}`);
+      }
 
       // Reset form
       setFormData({ title: "", content: "", author: "", image: null });
