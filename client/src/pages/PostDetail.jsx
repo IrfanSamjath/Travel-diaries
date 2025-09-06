@@ -31,7 +31,7 @@ function PostDetail() {
 
     // Remove leading slash if present and construct full URL
     const cleanPath = imagePath.startsWith('/') ? imagePath.substring(1) : imagePath;
-    const baseUrl = import.meta.env.VITE_API_URL || "https://travel-diaries-ekeo.onrender.com";
+    const baseUrl = import.meta.env.VITE_API_URL || "https://travel-diaries-backend-e8ud.onrender.com";
 
     return `${baseUrl}/${cleanPath}`;
   };

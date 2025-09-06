@@ -14,7 +14,9 @@ function Blog() {
   const fetchPosts = async () => {
     try {
       const response = await api.get("/posts");
-      setPosts(response.data);
+      // Check if response data is an object with data property (some APIs wrap data)
+      const postsData = Array.isArray(response.data) ? response.data : response.data.data || [];
+      setPosts(postsData);
     } catch (err) {
       console.error("Error fetching posts", err);
     }
