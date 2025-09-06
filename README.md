@@ -187,7 +187,7 @@ curl -X POST http://localhost:5000/api/posts \
 2. **Connect your GitHub repository**: https://github.com/IrfanSamjath/Travel-diaries
 3. **Configure the service**:
    - **Build Command**: `cd client && npm install && npm run build`
-   - **Publish Directory**: `client/build`
+   - **Publish Directory**: `client/dist`
 4. **Deploy** the service
 
 ### Environment Variables
