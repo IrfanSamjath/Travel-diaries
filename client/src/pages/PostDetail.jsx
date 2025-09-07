@@ -9,7 +9,7 @@ function PostDetail() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await api.get(`/posts/${id}`);
+        const response = await api.get(`/blog/${id}`);
         setPost(response.data);
       } catch (err) {
         console.error("Error loading post", err);
@@ -33,7 +33,7 @@ function PostDetail() {
     const cleanPath = imagePath.startsWith('/') ? imagePath.substring(1) : imagePath;
     const baseUrl = import.meta.env.VITE_API_URL || "https://travel-diaries-backend-e8ud.onrender.com";
 
-    return `${baseUrl}/${cleanPath}`;
+    return `${baseUrl}/uploads/${cleanPath}`;
   };
 
   const fullImageUrl = getImageUrl(post.image);
@@ -43,7 +43,12 @@ function PostDetail() {
       <h1>{post.title}</h1>
       {fullImageUrl && <img src={fullImageUrl} alt={post.title} width="400" />}
       <p>{post.content}</p>
-      <p><i>By {post.author} on {new Date(post.createdAt).toLocaleDateString()}</i></p>
+      <p>
+        <i>
+          By {post.author}
+          {post.createdAt && ` on ${new Date(post.createdAt).toLocaleDateString()}`}
+        </i>
+      </p>
     </div>
   );
 }
