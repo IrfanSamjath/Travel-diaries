@@ -8,7 +8,7 @@ const postsRouter = require("./routes/posts");
 
 const app = express();
 app.use(cors({
-  origin: ["https://travel-diaries-ekeo.onrender.com"],
+  origin: "https://travel-diaries-ekeo.onrender.com",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -21,9 +21,7 @@ connectDB();
 app.get("/", (req, res) => res.send("✅ Backend is live 🚀"));
 
 // Health check route
-app.get("/healthz", (req, res) => {
-  res.status(200).json({ status: "ok", message: "Backend is healthy 🚀" });
-});
+app.get("/healthz", (req, res) => res.send("OK"));
 
 // Mount posts routes under /api/posts
 app.use('/api/posts', postsRouter);
