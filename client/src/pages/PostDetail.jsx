@@ -20,24 +20,19 @@ function PostDetail() {
 
   if (!post) return <p>Loading...</p>;
 
-  // Construct full image URL by prepending backend base URL
   const getImageUrl = (imagePath) => {
     if (!imagePath) return null;
+    if (imagePath.startsWith("http")) return imagePath;
 
-    // If image path already includes full URL, use it as is
-    if (imagePath.startsWith('http')) {
-      return imagePath;
-    }
+    const baseUrl =
+      import.meta.env.VITE_API_URL ||
+      "https://travel-diaries-backend-e8ud.onrender.com";
 
-    // Remove leading slash if present and construct full URL
-    const cleanPath = imagePath.startsWith('/') ? imagePath.substring(1) : imagePath;
-    const baseUrl = import.meta.env.VITE_API_URL || "https://travel-diaries-backend-e8ud.onrender.com";
+    const cleanPath = imagePath.startsWith("/")
+      ? imagePath.substring(1)
+      : imagePath;
 
-    // If imagePath already includes /uploads/, avoid duplicating
-    if (imagePath.startsWith('/uploads/')) {
-      return `${baseUrl}${imagePath}`;
-    }
-
+    // if backend only returns filename, prepend /uploads
     return `${baseUrl}/uploads/${cleanPath}`;
   };
 

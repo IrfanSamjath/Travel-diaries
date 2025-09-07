@@ -7,7 +7,7 @@ function BlogForm({ onPostCreated }) {
     title: "",
     content: "",
     author: "",
-    image: null
+    image: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef(null);
@@ -16,14 +16,14 @@ function BlogForm({ onPostCreated }) {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleFileChange = (e) => {
     setFormData((prev) => ({
       ...prev,
-      image: e.target.files[0]
+      image: e.target.files[0],
     }));
   };
 
@@ -33,32 +33,23 @@ function BlogForm({ onPostCreated }) {
 
     try {
       const postData = new FormData();
-      postData.append('title', formData.title);
-      postData.append('content', formData.content);
-      postData.append('author', formData.author);
-      postData.append('tags', JSON.stringify([])); // Empty tags array for now
+      postData.append("title", formData.title);
+      postData.append("content", formData.content);
+      postData.append("author", formData.author);
+      postData.append("tags", JSON.stringify([])); // optional
 
       if (formData.image) {
-        postData.append('image', formData.image);
+        postData.append("image", formData.image);
       }
-
-      console.log("Submitting post data:", {
-        title: formData.title,
-        content: formData.content,
-        author: formData.author,
-        hasImage: !!formData.image
-      });
 
       const response = await api.post("/api/posts", postData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
 
       console.log("✅ Post created:", response.data);
-      if (onPostCreated) {
-        onPostCreated(response.data);
-      }
+      if (onPostCreated) onPostCreated(response.data);
 
       // Reset form
       setFormData({ title: "", content: "", author: "", image: null });
@@ -68,17 +59,9 @@ function BlogForm({ onPostCreated }) {
     } catch (error) {
       console.error("❌ Failed to create post:", error);
       if (error.response) {
-        // Server responded with error status
-        console.error("❌ Server error:", error.response.status, error.response.data);
-        alert(`Failed to create post: ${error.response.data.message || 'Server error'}`);
-      } else if (error.request) {
-        // Network error
-        console.error("❌ Network error:", error.request);
-        alert("Network error. Please check your connection and try again.");
+        alert(`Failed: ${error.response.data.message || "Server error"}`);
       } else {
-        // Other error
-        console.error("❌ Error:", error.message);
-        alert(`Error: ${error.message}`);
+        alert("Network error. Please check your connection and try again.");
       }
     } finally {
       setIsSubmitting(false);
@@ -143,11 +126,7 @@ function BlogForm({ onPostCreated }) {
           )}
         </div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="submit-btn"
-        >
+        <button type="submit" disabled={isSubmitting} className="submit-btn">
           {isSubmitting ? "Creating..." : "Create Post"}
         </button>
       </form>
