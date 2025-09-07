@@ -49,7 +49,7 @@ function BlogForm({ onPostCreated }) {
         hasImage: !!formData.image
       });
 
-      const response = await api.post("/blog", postData, {
+      const response = await api.post("/api/posts", postData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

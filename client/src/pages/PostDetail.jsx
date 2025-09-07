@@ -9,7 +9,7 @@ function PostDetail() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await api.get(`/blog/${id}`);
+        const response = await api.get(`/api/posts/${id}`);
         setPost(response.data);
       } catch (err) {
         console.error("Error loading post", err);
@@ -32,6 +32,11 @@ function PostDetail() {
     // Remove leading slash if present and construct full URL
     const cleanPath = imagePath.startsWith('/') ? imagePath.substring(1) : imagePath;
     const baseUrl = import.meta.env.VITE_API_URL || "https://travel-diaries-backend-e8ud.onrender.com";
+
+    // If imagePath already includes /uploads/, avoid duplicating
+    if (imagePath.startsWith('/uploads/')) {
+      return `${baseUrl}${imagePath}`;
+    }
 
     return `${baseUrl}/uploads/${cleanPath}`;
   };

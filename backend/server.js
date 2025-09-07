@@ -8,9 +8,8 @@ const postsRouter = require("./routes/posts");
 
 const app = express();
 app.use(cors({
-  origin: "https://travel-diaries-ekeo.onrender.com",
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
 }));
 app.use(express.json());
 
